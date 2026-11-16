@@ -9,7 +9,8 @@ Each task gives the agent a bug to fix or a change to make in the
 compiler. When the agent finishes, a grader script checks its change.
 Before any grader is trusted, it is run against the known correct answer,
 which it must pass, and against a few wrong answers that look right, which
-it must fail. So when an agent passes, its change is correct.
+it must fail. A grader that cannot tell a right answer from a near miss is
+never used.
 
 
 Running it
