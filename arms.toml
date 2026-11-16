@@ -1,0 +1,48 @@
+# Agent arms. Run one with: python -m tooleval run --arm A
+#
+# home      template dir under $TOOLEVAL_WORK. Each trial gets a fresh copy,
+#           kept in the trial's result dir. It holds a clean agent config only.
+# files     token files, mounted read-write at their own paths so that a token
+#           refresh reaches the host copy.
+# cmd       shell command run in the sandbox. {model} and {effort} come from
+#           the arm. The prompt path is in $TOOLEVAL_PROMPT.
+#
+# A vs B: harness effect with the model fixed. B vs C: model effect with the
+# harness fixed. D: Antigravity as shipped (the account has Gemini 3.8 Flash,
+# not Gemini 4 Argon). The OpenCode arm waits for a renewed OpenCode Go key.
+
+[A]
+harness = "claude-code"
+model = "claude-opus-5-5"
+effort = "high"
+home = "agent-home/claude"
+files = ["~/.claude/.credentials.json"]
+version_cmd = "claude --version"
+cmd = 'claude -p "$(cat "$TOOLEVAL_PROMPT")" --model {model} --effort {effort} --dangerously-skip-permissions --output-format stream-json --verbose'
+
+[B]
+harness = "cursor"
+model = "claude-opus-5-5-high"
+effort = "high"
+home = "agent-home/cursor"
+files = ["~/.config/cursor/auth.json"]
+version_cmd = "cursor-agent --version"
+cmd = 'cursor-agent -p --trust --force --sandbox disabled --model {model} --output-format stream-json "$(cat "$TOOLEVAL_PROMPT")"'
+
+[C]
+harness = "cursor"
+model = "composer-2.5"
+effort = "default"
+home = "agent-home/cursor"
+files = ["~/.config/cursor/auth.json"]
+version_cmd = "cursor-agent --version"
+cmd = 'cursor-agent -p --trust --force --sandbox disabled --model {model} --output-format stream-json "$(cat "$TOOLEVAL_PROMPT")"'
+
+[D]
+harness = "antigravity"
+model = "gemini-3.8-flash-high"
+effort = "high"
+home = "agent-home/agy"
+files = ["~/.gemini/antigravity-cli/antigravity-oauth-token"]
+version_cmd = "agy --version"
+cmd = 'agy -p "$(cat "$TOOLEVAL_PROMPT")" --dangerously-skip-permissions --model {model} --effort {effort} --output-format stream-json'

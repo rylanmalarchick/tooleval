@@ -1,0 +1,6 @@
+__pycache__/
+/results/
+/.venv
+/PLAN.txt
+/CLAUDE.md
+.pytest_cache/

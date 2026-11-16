@@ -1,0 +1,2 @@
+summary = "smoke test: one RK4 step, graded on a damped oscillator"
+timeout_s = 300
