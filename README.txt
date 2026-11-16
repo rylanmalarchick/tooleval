@@ -21,7 +21,7 @@ You need Python 3.11 or newer, plus pytest for the tests.
     python -m tooleval list             # show the tasks
     python -m tooleval selftest         # check each grader against the answers
     python -m pytest                    # the same check plus unit tests
-    python -m tooleval run --arm A      # run agent setup A on every task
+    python -m tooleval run --arm A      # run agent setup A on each task
 
 An "arm" is one agent setup: which tool, which model, and how it is
 launched. The arms are listed in arms.toml. A normal run only works from a
@@ -30,7 +30,7 @@ code. For quick tries on a dirty tree, add --pilot, and the results are
 marked as a pilot.
 
 Each run saves the prompt, the agent's full output, its code changes, and
-the grade for every task under results/.
+the grade for each task under results/.
 
 
 Sandbox
