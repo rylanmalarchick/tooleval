@@ -5,12 +5,11 @@ tooleval tests how well coding agents (Claude Code, Cursor, and others) do
 real work inside a real compiler. The first target is Catalyst, the quantum
 compiler behind PennyLane.
 
-Each task gives the agent a bug to fix or a change to make in the compiler. When
-the agent finishes, a grader script checks its change. Before any grader is
-trusted, it is run against the known correct answer, which it must pass,
-and against a few wrong answers that look right, which it must fail. That
-way a passing agent means the work is actually correct, not just that the
-grader was easy to fool.
+Each task gives the agent a bug to fix or a change to make in the
+compiler. When the agent finishes, a grader script checks its change.
+Before any grader is trusted, it is run against the known correct answer,
+which it must pass, and against a few wrong answers that look right, which
+it must fail. So when an agent passes, its change is correct.
 
 
 Running it
